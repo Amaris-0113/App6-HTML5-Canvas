@@ -25,47 +25,84 @@ https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
 	
-   <head> 
-      <title>App6---HTML5-Canvas</title>  
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <link rel="stylesheet" href="w3.css">
-      <link rel="stylesheet" href="w3-colors-flat.css">
-   </head> 
+ <!DOCTYPE html> // Declare this document as an HTML5 document
+<html lang="en"> // Start of the HTML document, set language to English
+<head> // Head section starts
+  <meta charset="UTF-8"> // Set character encoding to UTF-8
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> // Make the page responsive on mobile devices
+  <title>Canvas Drawing App</title> // Title shown in browser tab
 
+  <style> // Start of CSS styles
+    body {
+      font-family: Arial, sans-serif; // Set default font
+      text-align: center; // Center align text and elements
+      padding: 20px; // Add padding around the body
+    }
 
-<script>
-var docMod = document.lastModified; // loads last modified time stamp into docMod variable
-alert("This file last modified " + docMod); // generates alert box with time stamp. If annoying, comment out this entire line.
-console.log("This file last modified " + docMod); // generates message in javaScript console (found in developers tools) with time stamp. 
-</script>
+    canvas {
+      border: 2px solid #000; // Add a black border around the canvas
+      width: 90vw; // Set canvas width to 90% of the viewport width
+      height: 60vh; // Set canvas height to 60% of the viewport height
+    }
 
+    button {
+      margin: 10px; // Add space around buttons
+      padding: 10px 20px; // Add space inside buttons
+      font-size: 1em; // Set font size for buttons
+    }
+  </style> // End of CSS styles
+</head> // End of head section
 
+<body> // Start of body section
 
-<style>	
-.body {
-     margin: 0em;
-}
-.page {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: -100vw;
-    overflow-y: auto;
-    z-index: 0;
-    background-color: hsl(0,0%,100%);
-}
-  .page:target {
-    left: 0vw;
-    z-index: 1;
-}
-</style>
+  <h1>Canvas Drawing App</h1> // Main heading of the page
 
-<body>
-<div id="header" class="w3-container w3-flat-carrot">
-	<h1>App6---HTML5-Canvas</h1>
-</div>
+  <canvas id="myCanvas" width="360" height="240"></canvas> // Canvas element for drawing (with fixed pixel dimensions for JS)
+
+  <div> // Container for buttons
+    <button onclick="drawRectangle()">Draw Rectangle</button> // Button to draw a rectangle
+    <button onclick="addName()">Add Name</button> // Button to draw your name
+    <button onclick="loadImage()">Load Image</button> // Button to load and draw an image
+    <button onclick="clearCanvas()">Clear Canvas</button> // Button to clear the canvas
+  </div> // End of button container
+
+  <script> // Start of JavaScript section
+
+    const canvas = document.getElementById('myCanvas'); // Get canvas element by ID
+    const ctx = canvas.getContext('2d'); // Get 2D drawing context of canvas
+
+    function drawRectangle() { // Function to draw a rectangle
+      ctx.fillStyle = 'blue'; // Set fill color to blue
+      ctx.fillRect(50, 50, 150, 100); // Draw a rectangle at (50, 50) with width 150 and height 100
+    }
+
+    function addName() { // Function to draw your name
+      ctx.fillStyle = 'black'; // Set text color to black
+      ctx.font = '20px Arial'; // Set font size and family
+      ctx.fillText('Amaris Asamoah', 90, 220); // Draw text at coordinates (90, 220)
+    }
+
+    function loadImage() { // Function to load and draw an image
+      const img = new Image(); // Create a new Image object
+      img.onload = function () { // When the image loads...
+        ctx.drawImage(img, 120, 60, 100, 100); // Draw image at (120, 60) with width/height of 100
+      };
+      img.src = 'sample.png'; // Set image source to local file (make sure this exists in your repo)
+    }
+
+    function clearCanvas() { // Function to clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas area
+    }
+
+    const docMod = document.lastModified; // Get the date/time the file was last modified
+    alert("This file last modified " + docMod); // Show an alert with the last modified time
+    console.log("This file last modified " + docMod); // Log last modified time to the browser console
+
+  </script> // End of JavaScript section
+
+</body> // End of body
+</html> // End of HTML document
+
 	
 <div id="content" class="w3-container">
 	<p>Content goes here.</p>
